@@ -22,12 +22,12 @@ spec:
               - name: TELEGRAM_BOT_TOKEN
                 valueFrom:
                   secretKeyRef:
-                    name: telegramCredentials
+                    name: telegramcredentials
                     key: TELEGRAM_BOT_TOKEN
               - name: SECRET_PASSWORD
                 valueFrom:
                   secretKeyRef:
-                    name: telegramCredentials
+                    name: telegramcredentials
                     key: TELEGRAM_CHAT_ID
             args:
             - python3
