@@ -30,8 +30,7 @@ TELEGRAM_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID')
 config = configparser.ConfigParser()
 config.read('config.ini')
 
-#host = config['mysql']['host']
-#user = config['mysql']['user']
+mongo_url = config['mongodb']['mongo_url']
 
 def filter_data(string):
     '''
@@ -85,7 +84,7 @@ def send_data_to_ai(model, content):
     return data['predictions'][0]
 
 def write_mongo(title, text):
-    myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+    myclient = pymongo.MongoClient("mongodb://{}:27017/".format(mongo_url))
     mydb = myclient["webnews"]
     mycol = mydb["articles"]
     mydict = {"title" : title

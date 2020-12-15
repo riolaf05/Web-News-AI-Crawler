@@ -1,7 +1,7 @@
 FROM raspbian:stretch
 
 COPY requirements.txt /tmp/requirements.txt
-RUN pip3 install -r requirements.txt
+RUN pip3 install -r /tmp/requirements.txt
 
 RUN mkdir /home/scripts
 WORKDIR /home/scripts
