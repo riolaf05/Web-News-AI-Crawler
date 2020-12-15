@@ -13,7 +13,7 @@ WORKDIR /home/scripts
 
 COPY ./models/rss_model.h5 /home/scripts/models
 COPY ./feed_list.txt /home/scripts/
-COPY ./stateless_news_ai.py /home/scripts
+COPY ./stateful_news_ai.py /home/scripts
 COPY ./config.ini /home/scripts
 
 CMD ["python3", "stateful_news_ai.py"]
