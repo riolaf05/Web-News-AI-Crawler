@@ -1,9 +1,9 @@
 FROM arm32v7/ubuntu:18.04
 
-RUN apt-get update && apt-get install -y software-properties-common curl
+RUN apt-get update && apt-get install -y software-properties-common curl 
 RUN add-apt-repository ppa:deadsnakes/ppa
 
-RUN apt install -y python3.8
+RUN apt install -y python3.8 python3-distutils python3-apt
 
 RUN mkdir /home/scripts
 WORKDIR /home/scripts
