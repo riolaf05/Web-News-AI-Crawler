@@ -4,4 +4,3 @@ feedparser
 #subprocess
 #pandas
 keras==2.2.4
-urllib3
