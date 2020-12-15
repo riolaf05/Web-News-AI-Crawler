@@ -1,4 +1,4 @@
-FROM raspbian:stretch
+FROM arm32v7/ubuntu:18.04
 
 COPY requirements.txt /tmp/requirements.txt
 RUN pip3 install -r /tmp/requirements.txt
