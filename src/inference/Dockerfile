@@ -1,7 +1,7 @@
 FROM derekmerck/keras-tf:py3-tf190-k222-arm32v7
 
 COPY requirements.txt /tmp/requirements.txt
-RUN pip3 install -r requirements.txt
+RUN pip3 install -r /tmp/requirements.txt
 
 RUN pip3 uninstall conda -y
 RUN pip3 uninstall Pillow -y
