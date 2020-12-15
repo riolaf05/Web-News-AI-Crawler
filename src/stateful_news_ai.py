@@ -20,6 +20,7 @@ import numpy as np
 from telepot.loop import MessageLoop
 from telepot.namedtuple import InlineKeyboardMarkup, InlineKeyboardButton
 import configparser
+import pymongo
 
 model = None
 
@@ -83,6 +84,18 @@ def send_data_to_ai(model, content):
     data["success"] = True
     return data['predictions'][0]
 
+def write_mongo(title, text):
+    myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+    mydb = myclient["webnews"]
+    mycol = mydb["articles"]
+    mydict = {"title" : title
+              "text" : text
+              }
+    try:
+        x = mycol.insert_one(mydict)
+    except Exception as e:
+        print(e)
+
 # Open the rss file with read only permit and read line by line
 f = open('feed_list.txt', "r")
 lines = f.readlines()
@@ -107,7 +120,8 @@ for url in lines:
         for post in feed.entries:
             print("Title: ", post['title'])
             if re.match(r'^TechCrunch', post['title']): #TODO add more feeds to parse
-                if send_data_to_ai(post['content'][0]['value']) > 0.6:
+                if send_data_to_ai(post['content'][0]['value']) > 0.7:
+                    write_mongo(post['title'], post['content'][0]['value'])
                     send_message(post['link'])
                 print('\n')
             else:

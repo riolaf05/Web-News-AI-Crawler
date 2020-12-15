@@ -3,3 +3,4 @@ requests
 feedparser
 keras==2.2.4
 configparser
+pymongo
