@@ -1,0 +1,35 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: ai-news
+spec:
+  schedule: "0 8 * * 1"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: ai-news
+            image: rio05docker/ai_news_server:rpi3_develop_89714b6a3deaedd9672f73525ccc435cac5cd9ee
+            resources:
+                limits:
+                    memory: "1Gi"
+                    cpu: "1"
+                requests:
+                    cpu: "100m"
+                    memory: "30Mi"
+            env:
+              - name: TELEGRAM_BOT_TOKEN
+                valueFrom:
+                  secretKeyRef:
+                    name: telegramcredentials
+                    key: TELEGRAM_BOT_TOKEN
+              - name: TELEGRAM_CHAT_ID
+                valueFrom:
+                  secretKeyRef:
+                    name: telegramcredentials
+                    key: TELEGRAM_CHAT_ID
+            args:
+            - python3
+            - stateless_news_ai.py
+          restartPolicy: OnFailure
