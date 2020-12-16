@@ -1,6 +1,2 @@
 telepot
 requests
-feedparser
-#subprocess
-#pandas
-keras==2.2.4

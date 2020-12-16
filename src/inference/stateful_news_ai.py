@@ -87,11 +87,16 @@ def write_mongo(title, text):
     myclient = pymongo.MongoClient("mongodb://{}:27017/".format(mongo_url))
     mydb = myclient["webnews"]
     mycol = mydb["articles"]
-    mydict = {"title" : title
+    mydict = {
+              "title" : title,
               "text" : text
               }
     try:
-        x = mycol.insert_one(mydict)
+        mydoc = mycol.find({"title": title})
+        if mydoc.count() != 0:
+            x = mycol.insert_one(mydict)
+        else:
+            newvalues = { "$set": mydict }
     except Exception as e:
         print(e)
 
