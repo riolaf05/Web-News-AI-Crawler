@@ -88,7 +88,7 @@ def write_mongo(title, text):
     mydb = myclient["webnews"]
     mycol = mydb["articles"]
     mydict = {
-              "title" : title
+              "title" : title,
               "text" : text
               }
     try:
