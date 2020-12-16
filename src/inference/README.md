@@ -29,8 +29,8 @@ To generate from console:
 
 ```console
 kubectl create secret generic telegramcredentials \
-  --from-literal=TELEGRAM_BOT_TOKEN='<token>' \
-  --from-literal=TELEGRAM_CHAT_ID='<chat_id>'
+  --from-literal=TELEGRAM_BOT_TOKEN='826514544:AAH_yj9x0CD6auL-N49XGFRi7JqavhrJnaE' \
+  --from-literal=TELEGRAM_CHAT_ID='-1001457839912'
 ```
 
 To generate manually:
