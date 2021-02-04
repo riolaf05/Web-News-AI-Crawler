@@ -10,7 +10,7 @@ spec:
         spec:
           containers:
           - name: ai-news
-            image: rio05docker/ai_news_server:stateful_arm_2020-12-16
+            image: rio05docker/ai_news_server:telegram_arm_2021-02-04
             resources:
                 limits:
                     memory: "1Gi"

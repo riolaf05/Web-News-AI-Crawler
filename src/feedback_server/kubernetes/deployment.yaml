@@ -5,31 +5,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ai-news-server
+  name: ai_news_server
   labels:
-    k8s-app: ai-news-server
+    k8s-app: ai_news_server
 spec:
   replicas: 1
   revisionHistoryLimit: 5
   selector:
     matchLabels:
-      k8s-app: ai-news-server
+      k8s-app: ai_news_server
   template:
     metadata:
       labels:
-        k8s-app: ai-news-server
+        k8s-app: ai_news_server
     spec:
-      nodeName: raspberrypi1
       containers:
-      - name: ai-news-server
-        image: rio05docker/ai_news_server:telegram_arm_2020-12-16
+      - image: rio05docker/ai_news_server:telegram_arm_2021-02-04
+        imagePullPolicy: Always
+        name: ai_news_server
         resources:
             limits:
                 memory: "1Gi"
                 cpu: "1"
             requests:
                 cpu: "100m"
-                memory: "30Mi"
+                memory: "30Mi"  
         env:
           - name: TELEGRAM_BOT_TOKEN
             valueFrom:
@@ -40,8 +40,6 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: telegramcredentials
-                key: TELEGRAM_CHAT_ID    
-        args:
-            - python3
-            - telegram_feedback.py 
+                key: TELEGRAM_CHAT_ID
       restartPolicy: Always
+      
