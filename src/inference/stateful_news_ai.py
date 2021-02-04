@@ -125,7 +125,7 @@ for url in lines:
             print("Title: ", post['title'])
             if re.match(r'^TechCrunch', post['title']): #TODO add more feeds to parse
                 if send_data_to_ai(post['content'][0]['value']) > 0.7:
-                    write_mongo(post['title'], post['content'][0]['value'])
+                    #write_mongo(post['title'], post['content'][0]['value'])
                     send_message(post['link'])
                 print('\n')
             else:
