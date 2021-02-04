@@ -8,6 +8,7 @@ RUN pip3 install -r /tmp/requirements.txt
 RUN mkdir /home/scripts
 WORKDIR /home/scripts
 
+COPY ./config.ini /home/scripts/
 COPY ./telegram_feedback.py /home/scripts/
 
 CMD ["python3", "telegram_feedback.py"]

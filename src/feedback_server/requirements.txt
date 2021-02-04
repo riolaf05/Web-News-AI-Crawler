@@ -1,2 +1,4 @@
 telepot
 requests
+pymongo
+configparser
