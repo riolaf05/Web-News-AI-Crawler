@@ -19,7 +19,6 @@ spec:
       labels:
         k8s-app: mongo
     spec:
-      nodeName: raspberrypi1
       containers:
       - image: andresvidal/rpi3-mongodb3
         imagePullPolicy: Always
