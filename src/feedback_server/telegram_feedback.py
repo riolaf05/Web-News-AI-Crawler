@@ -34,9 +34,9 @@ def on_chat_message(msg):
 def on_callback_query(msg):
     query_id, chat_id, query_data = telepot.glance(msg, flavor='callback_query')
     print('Callback Query:', query_id, chat_id, query_data)
-    if query_data=='yes':
+    if query_data=='like':
         update:mongo( msg['message']['text'], True)
-    elif query_data=='no':
+    elif query_data=='dislike':
         #info=json.dumps(bot.getUpdates(),sort_keys=True, indent=4)
         update:mongo( msg['message']['text'], False)
 

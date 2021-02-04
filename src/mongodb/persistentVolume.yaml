@@ -23,7 +23,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/media/pi/extHD1/mongo/"
+    path: "/volumes/mongo/"
   nodeAffinity: #PersistentVolume nodeAffinity is required when using local volumes.
                 #It enables the Kubernetes scheduler to correctly schedule Pods using local volumes to the correct node.
     required:
