@@ -1,0 +1,45 @@
+#Pod’s configuration file specifies a PersistentVolumeClaim,
+#but it does not specify a PersistentVolume.
+#From the Pod’s point of view, the claim is a volume.
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ai_news_server
+  labels:
+    k8s-app: ai_news_server
+spec:
+  replicas: 1
+  revisionHistoryLimit: 5
+  selector:
+    matchLabels:
+      k8s-app: ai_news_server
+  template:
+    metadata:
+      labels:
+        k8s-app: ai_news_server
+    spec:
+      containers:
+      - image: rio05docker/ai_news_server:telegram_arm_2021-02-04
+        imagePullPolicy: Always
+        name: ai_news_server
+        resources:
+            limits:
+                memory: "1Gi"
+                cpu: "1"
+            requests:
+                cpu: "100m"
+                memory: "30Mi"  
+        env:
+          - name: TELEGRAM_BOT_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: telegramcredentials
+                key: TELEGRAM_BOT_TOKEN
+          - name: TELEGRAM_CHAT_ID
+            valueFrom:
+              secretKeyRef:
+                name: telegramcredentials
+                key: TELEGRAM_CHAT_ID
+      restartPolicy: Always
+      
