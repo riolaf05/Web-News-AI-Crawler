@@ -12,13 +12,13 @@ Apply files into `kubernetes` folder
 from ARM (i.e. RaspberryPi):
 
 ```console
-docker run -it --rm --name = ai_news -e TELEGRAM_BOT_TOKEN = '<token>' -e TELEGRAM_CHAT_ID='<id>' rio05docker/ai_news_server:stateful_arm_2020-12-16
+docker run -it --rm --name = ai_news -e TELEGRAM_BOT_TOKEN = '<token>' -e TELEGRAM_CHAT_ID='<id>' rio05docker/ai_news_server:stateful_arm_2021-02-04
 ```
 
 from x86 with **Qemu**:
 
 ```console
-docker run -it --rm -v /usr/bin/qemu-arm-static:/usr/bin/qemu-arm-static --name = ai_news -e TELEGRAM_BOT_TOKEN = '<token>' -e TELEGRAM_CHAT_ID='<id>' rio05docker/ai_news_server:stateful_arm_2020-12-16
+docker run -it --rm -v /usr/bin/qemu-arm-static:/usr/bin/qemu-arm-static --name = ai_news -e TELEGRAM_BOT_TOKEN = '<token>' -e TELEGRAM_CHAT_ID='<id>' rio05docker/ai_news_server:stateful_arm_2021-02-04
 ```
 
 **Note:**
@@ -29,8 +29,8 @@ To generate from console:
 
 ```console
 kubectl create secret generic telegramcredentials \
-  --from-literal=TELEGRAM_BOT_TOKEN='826514544:AAH_yj9x0CD6auL-N49XGFRi7JqavhrJnaE' \
-  --from-literal=TELEGRAM_CHAT_ID='-1001457839912'
+  --from-literal=TELEGRAM_BOT_TOKEN='<TOKEN>' \
+  --from-literal=TELEGRAM_CHAT_ID='<CHAT_ID>'
 ```
 
 To generate manually:
