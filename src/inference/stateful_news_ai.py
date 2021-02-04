@@ -32,6 +32,8 @@ config.read('config.ini')
 
 mongo_url = config['mongodb']['mongo_url']
 mongo_port = config['mongodb']['mongo_port']
+database_name = config['mongodb']['database_name']
+collection_name = config['mongodb']['collection_name']
 
 def filter_data(string):
     '''
@@ -84,16 +86,17 @@ def send_data_to_ai(model, content):
     data["success"] = True
     return data['predictions'][0]
 
-def write_mongo(title, text):
-    myclient = pymongo.MongoClient("mongodb://{}:27017/".format(mongo_url))
-    mydb = myclient["webnews"]
-    mycol = mydb["articles"]
+def write_mongo(link, text):
+    myclient = pymongo.MongoClient("mongodb://{}:{}/".format(mongo_url, mongo_port))
+    mydb = myclient[database_name]
+    mycol = mydb[collection_name]
     mydict = {
-              "title" : title,
-              "text" : text
+              "url" : link,
+              "text" : text,
+              "like" : False
               }
     try:
-        mydoc = mycol.find({"title": title})
+        mydoc = mycol.find({"url": link})
         if mydoc.count() != 0:
             x = mycol.insert_one(mydict)
         else:
@@ -126,7 +129,7 @@ for url in lines:
             print("Title: ", post['title'])
             if re.match(r'^TechCrunch', post['title']): #TODO add more feeds to parse
                 if send_data_to_ai(post['content'][0]['value']) > 0.7:
-                    #write_mongo(post['title'], post['content'][0]['value'])
+                    write_mongo(post['link'], post['content'][0]['value'])
                     send_message(post['link'])
                 print('\n')
             else:
