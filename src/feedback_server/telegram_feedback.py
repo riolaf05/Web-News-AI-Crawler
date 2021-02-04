@@ -14,12 +14,11 @@ def on_chat_message(msg):
 def on_callback_query(msg):
 	query_id, chat_id, query_data = telepot.glance(msg, flavor='callback_query')
 	print('Callback Query:', query_id, chat_id, query_data)
+	print(msg)
 	if query_data=='yes':
-		print("YES")
         #TODO: insert mongodb update query
 	elif query_data=='info':
 		info=json.dumps(bot.getUpdates(),sort_keys=True, indent=4)
-		print("NO")
         #TODO: insert mongodb update query
 
 bot = telepot.Bot(TOKEN)
