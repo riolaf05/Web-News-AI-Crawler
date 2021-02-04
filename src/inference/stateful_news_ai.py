@@ -31,6 +31,7 @@ config = configparser.ConfigParser()
 config.read('config.ini')
 
 mongo_url = config['mongodb']['mongo_url']
+mongo_port = config['mongodb']['mongo_port']
 
 def filter_data(string):
     '''
