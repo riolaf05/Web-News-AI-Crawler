@@ -5,25 +5,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ai_news_server
+  name: ainewsserver
   labels:
-    k8s-app: ai_news_server
+    k8s-app: ainewsserver
 spec:
   replicas: 1
   revisionHistoryLimit: 5
   selector:
     matchLabels:
-      k8s-app: ai_news_server
+      k8s-app: ainewsserver
   template:
     metadata:
       labels:
-        k8s-app: ai_news_server
+        k8s-app: ainewsserver
     spec:
       nodeName: raspberrypi
       containers:
       - image: rio05docker/ai_news_server:telegram_arm_2021-02-05
         imagePullPolicy: Always
-        name: ai_news_server
+        name: ainewsserver
         resources:
             limits:
                 memory: "1Gi"
