@@ -32,4 +32,4 @@ spec:
         - key: kubernetes.io/hostname
           operator: In
           values:
-          - raspberrypi1
+          - raspberrypi
