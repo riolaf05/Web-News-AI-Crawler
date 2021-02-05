@@ -19,9 +19,9 @@ spec:
       labels:
         k8s-app: ai_news_server
     spec:
-      nodeName: raspberrypi1
+      nodeName: raspberrypi
       containers:
-      - image: rio05docker/ai_news_server:telegram_arm_2021-02-04
+      - image: rio05docker/ai_news_server:telegram_arm_2021-02-05
         imagePullPolicy: Always
         name: ai_news_server
         resources:

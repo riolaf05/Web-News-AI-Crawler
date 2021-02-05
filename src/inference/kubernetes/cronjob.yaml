@@ -8,9 +8,10 @@ spec:
     spec:
       template:
         spec:
+          nodeName: raspberrypi
           containers:
           - name: ai-news
-            image: rio05docker/ai_news_server:telegram_arm_2021-02-04
+            image: rio05docker/ai_news_server:telegram_arm_2021-02-05
             resources:
                 limits:
                     memory: "1Gi"
