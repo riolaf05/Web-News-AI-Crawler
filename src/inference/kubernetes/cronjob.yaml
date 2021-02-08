@@ -11,7 +11,7 @@ spec:
           nodeName: raspberrypi
           containers:
           - name: ai-news
-            image: rio05docker/ai_news_server:stateful_arm_2021-02-05
+            image: rio05docker/ai_news_server:stateful_arm_2021-02-08
             resources:
                 limits:
                     memory: "1Gi"
