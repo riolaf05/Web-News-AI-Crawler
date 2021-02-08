@@ -98,9 +98,11 @@ def write_mongo(link, text):
     try:
         mydoc = mycol.find({"url": link})
         if mydoc.count() != 0:
-            x = mycol.insert_one(mydict)
+            myquery = { "url": link }
+            newvalues = { "$set": { "text" : text, "like": False } }
+            mycol.update_one(myquery, newvalues)
         else:
-            newvalues = { "$set": mydict }
+            x = mycol.insert_one(mydict)
     except Exception as e:
         print(e)
 
@@ -129,11 +131,12 @@ for url in lines:
             print("Title: ", post['title'])
             if re.match(r'^TechCrunch', post['title']): #TODO add more feeds to parse
                 if send_data_to_ai(post['content'][0]['value']) > 0.7:
-                    write_mongo(post['link'], post['content'][0]['value'])
+                    write_mongo(post['link'], post['content'][0]['value']) #TODO send to nosql db after interence (change?)
                     send_message(post['link'])
                 print('\n')
             else:
                 if send_data_to_ai(model, post['summary']) > 0.7:
+                    write_mongo(post['link'], post['summary']) #TODO send to nosql db after interence (change?)
                     send_message(post['link'])
                 print('\n')
     except Exception as e:
