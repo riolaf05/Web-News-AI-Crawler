@@ -21,7 +21,7 @@ spec:
     spec:
       nodeName: raspberrypi
       containers:
-      - image: rio05docker/ai_news_server:telegram_arm_2021-02-05
+      - image: rio05docker/ai_news_server:telegram_arm_2021-02-08
         imagePullPolicy: Always
         name: ainewsserver
         resources:
