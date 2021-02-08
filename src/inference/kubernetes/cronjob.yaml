@@ -8,9 +8,10 @@ spec:
     spec:
       template:
         spec:
+          nodeName: raspberrypi
           containers:
           - name: ai-news
-            image: rio05docker/ai_news_server:rpi3_develop_89714b6a3deaedd9672f73525ccc435cac5cd9ee
+            image: rio05docker/ai_news_server:stateful_arm_2021-02-08
             resources:
                 limits:
                     memory: "1Gi"
@@ -18,6 +19,7 @@ spec:
                 requests:
                     cpu: "100m"
                     memory: "30Mi"
+            imagePullPolicy: Always
             env:
               - name: TELEGRAM_BOT_TOKEN
                 valueFrom:
@@ -31,5 +33,5 @@ spec:
                     key: TELEGRAM_CHAT_ID
             args:
             - python3
-            - stateless_news_ai.py
+            - stateful_news_ai.py
           restartPolicy: OnFailure
